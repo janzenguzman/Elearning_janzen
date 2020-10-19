@@ -21,6 +21,9 @@
                         <%= link_to current_user.name, "#", class: "nav-link"%>
                     </li>
                     <li class="nav-item">
+                        <%= link_to "Users", users_path, class: "nav-link"%>
+                    </li>
+                    <li class="nav-item">
                         <%= link_to "Edit Profile", edit_user_path(current_user), class: "nav-link"%>
                     </li>
                     <li class="nav-item">
