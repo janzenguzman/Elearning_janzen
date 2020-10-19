@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_back(fallback_location: request.referer)
+      flash[:success] = "Account sucessfully made! You can now login."
+      redirect_to root_url
     else
       render 'new'
     end
