@@ -64,3 +64,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #Custom GEMS
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
+gem 'faker', '~> 1.6', '>= 1.6.6'
