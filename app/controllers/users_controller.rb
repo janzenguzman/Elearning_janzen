@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   
-  before_action :user_id, only: [:edit, :update]
+  before_action :logged_in_user, except: [:new, :create]
+  before_action :correct_user, only: [:edit, :update]
+  before_action :user_id, only: [:edit, :update, :show]
+
+  def index
+    @users = User.all
+  end
 
   def new
     @user = User.new
@@ -9,10 +15,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_back(fallback_location: request.referer)
+      flash[:success] = "Account sucessfully made! You can now login."
+      redirect_to root_url
     else
       render 'new'
     end
+  end
+
+  def show
   end
 
   def edit
@@ -33,5 +43,12 @@ class UsersController < ApplicationController
 
     def user_id
       @user = User.find(params[:id])
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      if @user != current_user
+        redirect_to root_url
+      end
     end
 end
