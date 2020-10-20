@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: :create
   #Relationship
-  resources :relationships, only: [:create, :destory]
+  resources :relationships, only: [:create, :destroy]
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

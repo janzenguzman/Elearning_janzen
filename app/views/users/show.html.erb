@@ -5,9 +5,19 @@
             <div class="card-body text-center">
                 <h3><%= @user.name %></h3>
                 <p><%= @user.email %></p>
-                <span class="text-center">
-                    <%= render "follow_form" %>
-                </span>
+                <div class="row mx-0">
+                    <div class="col-6">
+                        <a href="<%= following_user_path(@user) %>">
+                            <strong><%= @user.following.count %></strong> following
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="<%= followers_user_path(@user) %>">
+                            <strong><%= @user.followers.count %></strong> followers
+                        </a>
+                    </div>
+                </div>
+                <%= render "follow_form" %>
             </div>
         </div>
     </div>

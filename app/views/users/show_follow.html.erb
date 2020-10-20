@@ -1,0 +1,16 @@
+<%= provide(:title, @title) %>
+<h3><%= @title %></h3>
+<div class="row mx-0">
+    <% if @users.any? %>
+        <% @users.each do |user| %>
+            <div class="col-6 my-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h4><%= link_to user.name, user %></h4>
+                        <p><%= user.email %></p>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+</div>
