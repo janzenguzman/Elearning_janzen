@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   before_action :logged_in_user, except: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
-  before_action :user_id, only: [:edit, :update, :show]
+  before_action :user_id, only: [:edit, :update, :show, :following, :followers]
 
   def index
     @users = User.all
@@ -34,6 +34,20 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def following
+    @title = "Following"
+    @users = @user.following.all
+    @all_users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @users = @user.followers.all
+    @all_users = @user.followers
+    render 'show_follow'
   end
 
   private
