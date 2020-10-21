@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+
+  before_action :admin_log_in
+
   def index
     @category = Category.all
   end
