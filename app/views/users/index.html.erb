@@ -9,8 +9,8 @@
                     </div>
                     <% if current_user.is_admin && !user.is_admin %>
                         <%= link_to "Remove", user, method: :delete,
-                                                        data: { confirm: "Are you sure?" },
-                                                        class: "float-right" %>
+                                                    data: { confirm: "Are you sure?" },
+                                                    class: "float-right" %>
                     <% end %>
                 </div>
             </div>
