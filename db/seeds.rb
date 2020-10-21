@@ -9,18 +9,11 @@
 User.create(
   name: "Sample Admin",
   email: "sample@admin.com",
-  password: "admin",
+  password: "admin123",
   is_admin: true
 )
 
-User.create(
-  name: "Sample janzen",
-  email: "janzensample@mail.com",
-  password: "password",
-  is_admin: false
-)
-
-50.times do |n|
+20.times do |n|
   User.create(
     name: Faker::Name.name,
     email: Faker::Internet.unique.email,

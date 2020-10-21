@@ -1,0 +1,25 @@
+<div class="row my-4">
+    <div class="col-6"><h1>Admin | Categories</h1></div>
+    <div class="col-6"><%= link_to "Create new Category", new_category_path, class: "btn btn-primary" %></div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Word/s</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @category.each do |cat| %>
+            <tr>
+                <td><%= cat.title%></td>
+                <td><%= cat.description%></td>
+                <td>0</td>
+                <td>Action</td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

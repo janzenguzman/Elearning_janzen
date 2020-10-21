@@ -8,6 +8,9 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def dashboard
+  end
+
   def new
     @user = User.new
   end
@@ -34,6 +37,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id]).destroy
+    @user.destroy
+    redirect_back(fallback_location: request.referer)
   end
 
   def following
