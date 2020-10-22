@@ -6,16 +6,19 @@ Rails.application.routes.draw do
   #Users
   #root 'users#index'
   get '/signup', to: 'users#new'
+  get '/dashboard', to: 'users#dashboard'
 
   #Sessions
   root 'sessions#new'
   delete 'logout', to: 'sessions#destory'
   get 'sessions/create'
 
-  resources :users
+  #Sessions
   resources :sessions, only: :create
   #Relationship
   resources :relationships, only: [:create, :destroy]
+  #Categories
+  resources :categories
 
   resources :users do
     member do

@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  def admin_log_in
+    unless admin_user?
+      flash[:info] = "You are not authorized to access the link."
+      redirect_to root_url
+    end
+  end
 end
