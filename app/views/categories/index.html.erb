@@ -1,6 +1,10 @@
 <div class="row my-4">
     <div class="col-6"><h1>Admin | Categories</h1></div>
-    <div class="col-6"><%= link_to "Create new Category", new_category_path, class: "btn btn-primary" %></div>
+    <div class="col-6">
+        <div class="d-flex justify-content-end">
+            <%= link_to "Create new Category", new_category_path, class: "btn btn-primary" %>
+        </div>
+    </div>
 </div>
 <table class="table">
     <thead>
@@ -15,10 +19,15 @@
     <tbody>
         <% @category.each do |cat| %>
             <tr>
-                <td><%= cat.title%></td>
-                <td><%= cat.description%></td>
+                <td><%= link_to cat.title, cat, class: "text-decoration-none" %></td>
+                <td><%= cat.description %></td>
                 <td>0</td>
-                <td>Action</td>
+                <td>
+                    <%= link_to "Edit", edit_category_path(cat.id), class: "btn btn-info" %>
+                    <%= link_to "Delete", cat, method: :delete,
+                                                data: { confirm: "Are you sure?" },
+                                                class: "btn btn-danger" %>
+                </td>
             </tr>
         <% end %>
     </tbody>
