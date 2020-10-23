@@ -22,7 +22,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    abort
+    #@cat = Category.find(params[:id])
+    @words = @category.words.all
   end
 
   def edit

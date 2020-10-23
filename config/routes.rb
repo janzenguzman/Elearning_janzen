@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   #Categories
   resources :categories
+  #Words
+  resources :words
 
   resources :users do
     member do

@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="d-flex justify-content-between align-items center mt-4">
+        <h1>Create a word</h1>
+        <%#= link_to "Back", request.referer.present? ? request.referer : @cat, class: "btn btn-link" %>
+    </div>
+    <%= form_for @word do |f| %>
+        <%= f.label :word %>
+        <%= f.text_field :word, class: "form-control" %>
+        <%#= hidden_field_tag :category_id, @cat %>
+
+        <%= f.submit "Create word", class: "btn btn-block btn-primary mt-4" %>
+    <% end %>
+</div>
