@@ -2,7 +2,7 @@
     <div class="col-6"><h1>Admin | Categories</h1></div>
     <div class="col-6">
         <div class="d-flex justify-content-end">
-            <%= link_to "Add Word", new_word_path, class: "btn btn-primary" %>
+            <%= link_to "Add Word", new_word_path(@category.id), class: "btn btn-primary" %>
             <%= link_to "Back", categories_path, class: "btn btn-link" %>
         </div>
     </div>
@@ -18,11 +18,7 @@
 
     <tbody>
         <% if @category.words.any? %>
-            <tr>
-                <td><%= render @words %></td>
-                <td>Answer</td>
-                <td>Action</td>
-            </tr>
+            <%= render @words %>
         <% end %>
     </tbody>
 </table>

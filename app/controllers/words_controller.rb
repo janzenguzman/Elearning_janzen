@@ -9,14 +9,18 @@ class WordsController < ApplicationController
 
   def new
     @word = Word.new
+    @cat_id = params[:id]
+    @word.category_id = @cat_id
   end
 
   def create
-    abort
     @word = Word.new(word_params)
     if @word.save
-      render 'categories/show'
+      flash[:success] = "this is temporary: word created"
+      redirect_to new_word_url(@word.category_id)
     else
+      # abort
+      flash[:danger] = "this is temporary: something caused an error"
       render 'new'
     end
   end
