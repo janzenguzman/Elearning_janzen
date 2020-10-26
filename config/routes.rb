@@ -19,7 +19,10 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   #Categories
   resources :categories
-
+  #Words
+  get '/categories/:id/words/new', to: 'words#new', as: 'new_word'
+  resources :words
+  #Users
   resources :users do
     member do
       get :following, :followers
