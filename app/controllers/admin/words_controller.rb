@@ -4,6 +4,7 @@ class Admin::WordsController < ApplicationController
 
   def new
     @word = current_category.words.build
+    3.times { @word.choices.build }
   end
 
   def create
@@ -13,14 +14,14 @@ class Admin::WordsController < ApplicationController
       flash[:success] = "You have made a new word!"
       redirect_to new_admin_category_word_path(current_category)
     else
-      flash[:danger] = "Something is wrong."
-      render 'new'
+      flash[:danger] = "Something went wrong."
+      redirect_to new_admin_category_word_path(current_category)
     end
   end
 
   private
     def word_params
-      params.require(:word).permit(:word, :category_id)
+      params.require(:word).permit(:word, :category_id, { choices_attributes: [:word_id, :choice] })
     end
 
     def current_category
