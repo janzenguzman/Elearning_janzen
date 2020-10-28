@@ -1,5 +1,16 @@
 <tr>
     <td><%= word.word %></td>
-    <td>Answer</td>
-    <td>Action</td>
+    <td>
+        <% word.choices.each do |choice| %>
+            <% if choice.is_correct? %>
+                <%= choice.choice %>
+            <% end %>
+        <% end %>
+    </td>
+    <td>
+        <%= link_to "Edit", edit_admin_category_word_path(@category), class: "btn btn-info" %>
+        <%= link_to "Delete", admin_category_word_path(@category), method: :delete,
+                                    data: { confirm: "Are you sure?" },
+                                    class: "btn btn-danger" %>
+    </td>
 </tr>
