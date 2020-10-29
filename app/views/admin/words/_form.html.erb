@@ -1,5 +1,4 @@
 <%= form_for ([:admin, :category, @word]) do |f| %>
-    <%= @word.category_id %>
     <%= f.label :word %>
     <%= f.text_field :word, class: "form-control" %>
 
@@ -12,5 +11,5 @@
         </div>
     <% end %>
 
-    <%= f.submit "Create word", class: "btn btn-block btn-primary mt-4" %>
+    <%= f.submit btn_msg, class: "btn btn-block btn-primary mt-4" %>
 <% end %>

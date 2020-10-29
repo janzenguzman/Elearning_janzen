@@ -3,5 +3,7 @@
         <h1>Edit a word</h1>
         <%= link_to "Back", admin_category_path(@category), class: "btn btn-link" %>
     </div>
-    <%= render "form" %>
+    <div class="form">
+        <%= render "form", btn_msg: "Update Word" %>
+    </div>
 </div>
