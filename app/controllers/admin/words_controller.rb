@@ -2,7 +2,7 @@ class Admin::WordsController < ApplicationController
 
   before_action :admin_log_in
   before_action :current_category
-  before_action :current_word, only: [:edit, :update]
+  before_action :current_word, only: [:edit, :update, :destroy]
 
   def new
     @word = current_category.words.build
@@ -17,8 +17,7 @@ class Admin::WordsController < ApplicationController
       flash[:success] = "You have made a new word!"
       redirect_to new_admin_category_word_url(current_category)
     else
-      flash[:danger] = "Something went wrong."
-      redirect_to new_admin_category_word_url(current_category)
+      render 'new'
     end
   end
 
@@ -26,19 +25,24 @@ class Admin::WordsController < ApplicationController
   end
 
   def update
-    @word.category_id = params[:category_id]
-
     if current_word.update_attributes(word_params)
       flash[:success] = "Word UPDATED!"
-      redirect_to admin_category_url(@word.category_id)
+      redirect_to admin_category_url(current_category)
     else
-      abort
+      render 'edit'
     end
+  end
+
+  def destroy
+    @word = current_word.destroy
+    @word.destroy
+    flash[:danger] = "Word deleted."
+    redirect_back(fallback_location: request.referer)
   end
 
   private
     def word_params
-      params.require(:word).permit(:word, :category_id, { choices_attributes: [:word_id, :choice, :is_correct] })
+      params.require(:word).permit(:word, :category_id, { choices_attributes: [:id, :word_id, :choice, :is_correct] })
     end
 
     def current_category

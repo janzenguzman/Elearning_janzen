@@ -1,4 +1,6 @@
 <%= form_for ([:admin, :category, @word]) do |f| %>
+    <%= render "shared/alerts", object: f.object %>
+
     <%= f.label :word %>
     <%= f.text_field :word, class: "form-control" %>
 
