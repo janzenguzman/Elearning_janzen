@@ -6,7 +6,9 @@ class Admin::WordsController < ApplicationController
 
   def new
     @word = current_category.words.build
-    3.times { @word.choices.build }
+    3.times do
+      @word.choices.build
+    end
   end
 
   def create

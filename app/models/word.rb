@@ -4,7 +4,7 @@ class Word < ApplicationRecord
   has_many :choices, dependent: :destroy
   accepts_nested_attributes_for :choices
   validate :only_one_correct_answer
-  # validate :unique_choice
+  validate :unique_choice
   
   validates :word, presence: true, length: { minimum: 3 }
   validates :category_id, presence: true
@@ -18,10 +18,9 @@ class Word < ApplicationRecord
       end
     end
 
-    # def unique_choice
-      # abort
-      # unless self.attributes.select{ |choice| choice.choice.include? }.values.uniq.length < 1
-      #   return errors.add(:word, "should have unique choices")
-      # end
-    # end
+    def unique_choice
+      if choices.uniq{ |choice| choice.choice }.length < choices.length
+        return errors.add(:word, "choices should be unique")
+      end
+    end
 end
