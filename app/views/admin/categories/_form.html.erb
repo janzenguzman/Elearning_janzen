@@ -1,5 +1,7 @@
 <div class="container">
-    <%= form_for @category do |f| %>
+    <%= form_for ([:admin, @category]) do |f| %>
+        <%= render "shared/alerts", object: f.object %>
+
         <%= f.label :title %>
         <%= f.text_field :title, class: "form-control" %>
 

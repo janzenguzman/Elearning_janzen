@@ -2,7 +2,7 @@
     <div class="col-6"><h1>Admin | Categories</h1></div>
     <div class="col-6">
         <div class="d-flex justify-content-end">
-            <%= link_to "Create new Category", new_category_path, class: "btn btn-primary" %>
+            <%= link_to "Create new Category", new_admin_category_path, class: "btn btn-primary" %>
         </div>
     </div>
 </div>
@@ -19,12 +19,12 @@
     <tbody>
         <% @category.each do |cat| %>
             <tr>
-                <td><%= link_to cat.title, cat, class: "text-decoration-none" %></td>
+                <td><%= link_to cat.title, admin_category_path(cat), class: "text-decoration-none" %></td>
                 <td><%= cat.description %></td>
-                <td>0</td>
+                <td><%= cat.words.count %></td>
                 <td>
-                    <%= link_to "Edit", edit_category_path(cat.id), class: "btn btn-info" %>
-                    <%= link_to "Delete", cat, method: :delete,
+                    <%= link_to "Edit", edit_admin_category_path(cat), class: "btn btn-info" %>
+                    <%= link_to "Delete", admin_category_path(cat), method: :delete,
                                                 data: { confirm: "Are you sure?" },
                                                 class: "btn btn-danger" %>
                 </td>

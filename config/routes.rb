@@ -1,27 +1,30 @@
 Rails.application.routes.draw do
-  #Static Pages
+  # Static Pages
   get '/about-us', to:'pages#about'
   get '/contact-us', to:'pages#contact'
 
-  #Users
-  #root 'users#index'
+  # Users
+  # root 'users#index'
   get '/signup', to: 'users#new'
   get '/dashboard', to: 'users#dashboard'
 
-  #Sessions
+  # Sessions
   root 'sessions#new'
   delete 'logout', to: 'sessions#destory'
   get 'sessions/create'
 
-  #Sessions
+  # Sessions
   resources :sessions, only: :create
-  #Relationship
+  # Relationship
   resources :relationships, only: [:create, :destroy]
-  #Categories
-  resources :categories
-  #Words
-  get '/categories/:id/words/new', to: 'words#new', as: 'new_word'
-  resources :words
+  # Admin
+  namespace :admin do
+    # Category
+    resources :categories do
+      # Words
+      resources :words
+    end
+  end
   #Users
   resources :users do
     member do

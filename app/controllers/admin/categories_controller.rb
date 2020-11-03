@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < ApplicationController
 
   before_action :admin_log_in
   before_action :cat_id, only: [:edit, :update, :show]
@@ -15,15 +15,14 @@ class CategoriesController < ApplicationController
     @category = Category.new(cat_params)
     if @category.save
       flash[:success] = "New category created."
-      redirect_to categories_url
+      redirect_to admin_categories_url
     else
       render 'new'
     end
   end
 
   def show
-    #@cat = Category.find(params[:id])
-    @words = @category.words.all
+    @words = cat_id.words.all
   end
 
   def edit
@@ -32,7 +31,7 @@ class CategoriesController < ApplicationController
   def update
     if @category.update(cat_params)
       flash[:success] = "Category updated."
-      redirect_to categories_url
+      redirect_to admin_categories_url
     else
       render 'edit'
     end

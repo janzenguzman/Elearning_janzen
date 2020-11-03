@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="d-flex justify-content-between align-items center mt-4">
+        <h1>Create a word</h1>
+        <%= link_to "Back", admin_category_path(@category), class: "btn btn-link" %>
+    </div>
+    <div class="form">
+        <%= form_for ([:admin, :category, @word]) do |f| %>
+            <%= render "shared/alerts", object: f.object %>
+
+            <%= f.label :word %>
+            <%= f.text_field :word, class: "form-control" %>
+
+            <%= f.fields_for :choices do |choice_field| %>
+                <%= choice_field.label :choice %>
+                <%= choice_field.text_field :choice, class: "form-control" %>
+                <div class="w-100">
+                    <%= choice_field.check_box :is_correct %>
+                    <%= choice_field.label :is_correct, "Correct" %>
+                </div>
+            <% end %>
+
+            <%= f.submit "Create new Word", class: "btn btn-block btn-primary mt-4" %>
+        <% end %>
+    </div>
+</div>
