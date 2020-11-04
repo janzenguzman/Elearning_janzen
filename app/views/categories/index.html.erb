@@ -1,0 +1,23 @@
+<div class="mt-4"><h1>Categories</h1></div>
+<div class="row">
+    <% @category.each do |category| %>
+        <div class="col-6 my-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><%= category.title %></h5>
+                    <p class="card-text"><%= category.description %></p>
+                    <%#= link_to "Learn", new_category_lesson_path(category.id), class: "btn btn-primary" %>
+                    <%= form_for @lesson do |f| %>
+                        <%= hidden_field_tag :user_id, current_user %>
+                        <%= hidden_field_tag :category_id, category.id %>
+                        <%= f.submit "Learn", class: "btn btn-primary" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>
+
+<div>
+    <%= will_paginate @category %>
+</div>

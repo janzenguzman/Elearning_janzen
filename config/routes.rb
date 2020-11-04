@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # root 'users#index'
   get '/signup', to: 'users#new'
   get '/dashboard', to: 'users#dashboard'
+  get '/admin/dashboard', to: 'admin/users#dashboard'
 
   # Sessions
   root 'sessions#new'
@@ -25,6 +26,12 @@ Rails.application.routes.draw do
       resources :words
     end
   end
+  #Categories
+  resources :categories, only: [:index] do
+    #Lessons
+    resources :lessons, only: [:new, :create]
+  end
+
   #Users
   resources :users do
     member do
