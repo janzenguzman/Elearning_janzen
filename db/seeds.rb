@@ -21,3 +21,24 @@ User.create(
     is_admin: false
   )
 end
+
+User.create(
+  name: "Janzen Sample",
+  email: "janzensample@mail.com",
+  password: "password",
+  is_admin: false
+)
+
+users = User.all
+user = users.first
+following = users[2..22]
+followers = users[3..12]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
+
+10.times do
+  Category.create(
+    title: Faker::Lorem.sentence(3),
+    description: Faker::Lorem.paragraph_by_chars(75)
+  )
+end

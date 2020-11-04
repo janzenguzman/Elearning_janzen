@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  word_id: 1
+  choice: MyString
+  is_correct: false
+
+two:
+  word_id: 1
+  choice: MyString
+  is_correct: false
