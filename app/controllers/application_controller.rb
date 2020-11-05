@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
+  include LessonsHelper
   #Authenticate User login
   def logged_in_user
     unless logged_in?

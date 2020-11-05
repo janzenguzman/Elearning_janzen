@@ -1,20 +1,31 @@
-<div class="mt-4"><h1>Categories</h1></div>
+<div class="mt-4 text-center"><h1>Categories</h1></div>
 <div class="row">
-    <% @category.each do |category| %>
-        <div class="col-6 my-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><%= category.title %></h5>
-                    <p class="card-text"><%= category.description %></p>
-                    <%#= link_to "Learn", new_category_lesson_path(category.id), class: "btn btn-primary" %>
-                    <%= form_for @lesson do |f| %>
-                        <%= hidden_field_tag :user_id, current_user %>
-                        <%= hidden_field_tag :category_id, category.id %>
-                        <%= f.submit "Learn", class: "btn btn-primary" %>
-                    <% end %>
+    <% if @categories.any? %>
+        <% @categories.each do |category| %>
+            <% if category.words.any? %>
+                <div class="col-6 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= category.title %></h5>
+                            <hr class="my-3">
+                            <p class="card-text"><%= category.description %></p>
+
+                            <% if is_completed(category) %>
+                                <p class="text-right"><%= link_to "See Results", category_lesson_path(category, is_completed(category)) %></p>
+                            <% else %>
+                                <div class="text-right">
+                                    <%= form_for ([category, @lesson]) do |f| %>
+                                        <%= hidden_field_tag :user_id, current_user.id %>
+                                        <%= hidden_field_tag :category_id, category.id %>
+                                        <%= f.submit "Learn", class: "btn btn-primary" %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            <% end %>
+        <% end %>
     <% end %>
 </div>
 

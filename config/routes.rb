@@ -29,7 +29,10 @@ Rails.application.routes.draw do
   #Categories
   resources :categories, only: [:index] do
     #Lessons
-    resources :lessons, only: [:new, :create]
+    resources :lessons, only: [:new, :create, :show] do
+      #Answers
+      resources :answers, only: [:new, :create]
+    end
   end
 
   #Users

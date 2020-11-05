@@ -13,6 +13,20 @@ User.create(
   is_admin: true
 )
 
+User.create(
+  name: "Admin Framiga",
+  email: "framgia@email.com",
+  password: "password",
+  is_admin: true
+)
+
+User.create(
+  name: "Janzen Sample",
+  email: "janzensample@mail.com",
+  password: "password",
+  is_admin: false
+)
+
 20.times do |n|
   User.create(
     name: Faker::Name.name,
@@ -21,13 +35,6 @@ User.create(
     is_admin: false
   )
 end
-
-User.create(
-  name: "Janzen Sample",
-  email: "janzensample@mail.com",
-  password: "password",
-  is_admin: false
-)
 
 users = User.all
 user = users.first
@@ -38,7 +45,7 @@ followers.each { |follower| follower.follow(user) }
 
 10.times do
   Category.create(
-    title: Faker::Lorem.sentence(3),
+    title: Faker::Lorem.word,
     description: Faker::Lorem.paragraph_by_chars(75)
   )
 end

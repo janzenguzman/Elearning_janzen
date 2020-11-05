@@ -1,0 +1,47 @@
+<div class="col-10 mx-auto my-4">
+    <div class="d-flex justify-content-between align-items-end mb-3">
+        <div>
+            <h3>Your results for <strong><%= @category.title %></strong></h3>
+        </div>
+        <p class="mb-1">
+            <strong>
+                <%= show_result(@category) %> out of <%= total_words(@category) %>
+            </strong>
+        </p>
+    </div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>Word</th>
+                <th>Your Answer</th>
+                <th>Correct Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @words.each do |word| %>
+                <tr>
+                    <th><%= word.word %></th>
+                    <td>
+                        <% word.choices.each do |choice| %>
+                            <% @answer.each do |answer| %>
+                                <% if choice.id == answer.choice_id %>
+                                    <%= choice.choice %>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <% word.choices.each do |choice| %>
+                            <% if choice.is_correct %>
+                                <%= choice.choice %>
+                            <% end %>
+                        <% end %>
+                    </td>
+                </tr>
+            <%end %>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-end">
+        <%= link_to "Back", categories_path, class: "btn btn-secondary" %>
+    </div>
+</div>

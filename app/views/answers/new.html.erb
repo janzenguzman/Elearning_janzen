@@ -1,0 +1,21 @@
+<% @words.each do |word| %>
+    <div class="col-6 mx-auto">
+        <div class="jumbotron mt-4 p-5 text-center">
+            <h3><%= word.word %></h3>
+            <hr class="my-4">
+
+            <% word.choices.each do |choice| %>
+                <%= form_for ([@category, @lesson, @answer]) do |f| %>
+                    <%= hidden_field_tag :word_id, word.id %>
+                    <%= hidden_field_tag :choice_id, choice.id %>
+                    <%= hidden_field_tag :page, @words.next_page %>
+                    <%= f.submit choice.choice, class: "btn btn-secondary mt-2 btn-block" %>
+                <% end %>
+            <% end %>
+
+            <div class="mt-4">
+                <%= page_entries_info @words %>
+            </div>
+        </div>
+    </div>
+<% end %>
