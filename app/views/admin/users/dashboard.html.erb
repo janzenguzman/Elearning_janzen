@@ -1,0 +1,32 @@
+<div class="row pt-4 mx-0">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">User Information</div>
+            <div class="card-body text-center">
+                <h3><%= current_user.name %></h3>
+                <p><%= current_user.email %></p>
+            </div>
+        </div>
+        <div class="card mt-4">
+            <div class="card-header">User Stats</div>
+            <div class="card-body text-center">
+                <a href="#">Words learned link here</a>
+                <div class="row mt-2 mx-0">
+                    <div class="col-6">
+                        <a href="<%= following_user_path(current_user) %>">
+                            <strong><%= current_user.following.count %></strong> following
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="<%= followers_user_path(current_user) %>">
+                            <strong><%= current_user.followers.count %></strong> followers
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <%= render "users/activity" %>
+    </div>
+</div>

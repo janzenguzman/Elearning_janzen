@@ -4,7 +4,7 @@ class Admin::CategoriesController < ApplicationController
   before_action :cat_id, only: [:edit, :update, :show]
 
   def index
-    @category = Category.all
+    @category = Category.paginate(page: params[:page], per_page: 10)
   end
 
   def new
