@@ -2,14 +2,14 @@
 <div class="row">
     <% if @categories.any? %>
         <% @categories.each do |category| %>
-            <% if category.words.any? %>
-                <div class="col-6 my-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= category.title %></h5>
-                            <hr class="my-3">
-                            <p class="card-text"><%= category.description %></p>
+            <div class="col-6 my-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= category.title %></h5>
+                        <hr class="my-3">
+                        <p class="card-text"><%= category.description %></p>
 
+                        <% if category.words.any? %>
                             <% if is_completed(category) %>
                                 <p class="text-right"><%= link_to "See Results", category_lesson_path(category, is_completed(category)) %></p>
                             <% else %>
@@ -17,15 +17,28 @@
                                     <%= form_for ([category, @lesson]) do |f| %>
                                         <%= hidden_field_tag :user_id, current_user.id %>
                                         <%= hidden_field_tag :category_id, category.id %>
+                                        <%= f.fields_for [:action, Activity.new] do |activity| %>
+                                            <%= hidden_field_tag :user_id, current_user.id %>
+                                        <% end %>
                                         <%= f.submit "Learn", class: "btn btn-primary" %>
                                     <% end %>
                                 </div>
                             <% end %>
-                        </div>
+                        <% else %>
+                            <p class="text-right text-danger mb-0">Not available yet.</p>
+                        <% end %>
                     </div>
                 </div>
-            <% end %>
+            </div>
         <% end %>
+    <% else %>
+        <div class="w-100 my-3">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">No lessons yet.</h3>
+                </div>
+            </div>
+        </div>
     <% end %>
 </div>
 
