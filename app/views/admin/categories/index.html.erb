@@ -19,7 +19,7 @@
     <tbody>
         <% @category.each do |cat| %>
             <tr>
-                <td><%= link_to cat.title, admin_category_path(cat), class: "text-decoration-none" %></td>
+                <td><%= link_to cat.title, admin_category_path(cat) %></td>
                 <td><%= cat.description %></td>
                 <td><%= cat.words.count %></td>
                 <td>

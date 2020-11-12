@@ -14,7 +14,7 @@ class Admin::CategoriesController < ApplicationController
   def create
     @category = Category.new(cat_params)
     if @category.save
-      flash[:success] = "New category created."
+      flash[:success] = "Success! New category created."
       redirect_to admin_categories_url
     else
       render 'new'
@@ -30,7 +30,7 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     if @category.update(cat_params)
-      flash[:success] = "Category updated."
+      flash[:success] = "Success! Category updated."
       redirect_to admin_categories_url
     else
       render 'edit'
@@ -40,7 +40,7 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id]).destroy
     @category.destroy
-    flash[:danger] = "Category deleted."
+    flash[:danger] = "Oh! You just deleted a Category."
     redirect_back(fallback_location: request.referer)
   end
 

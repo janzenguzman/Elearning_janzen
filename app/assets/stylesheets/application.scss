@@ -12,9 +12,52 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
- @import "bootstrap";
+@import "bootstrap";
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap');
+// Font Awesome
+@import "font-awesome";
+// Breakpoints
+// Small tablets and large smartphones (landscape view)
+$screen-sm-min: 576px;
+// Small tablets (portrait view)
+$screen-md-min: 768px;
+// Tablets and small desktops
+$screen-lg-min: 992px;
+// Large tablets and desktops
+$screen-xl-min: 1200px;
 
+// Small devices
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+//  User image
 .profile-medium {
   width: 4rem;
   height: 4rem;
@@ -23,4 +66,204 @@
 .profile-large {
   width: 7rem;
   height: 7rem;
+}
+
+// General
+body {
+  color: #333333;
+  height: 100vh;
+}
+
+.main-header {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 4rem;
+}
+
+.logged-out-form {
+  @include lg {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+.static-page {
+  @include lg {
+    width: 75%;
+    margin: auto;
+  }
+}
+
+// Alert Banners
+.alert-danger {
+  background-color: #F2DEDE;
+  border-color: #EED3D7;
+  color: #B94A48;
+}
+
+.alert-danger .alert-link {
+  color: #953B39;
+}
+
+.alert-success {
+  background-color: #DFF0D8;
+  border-color: #D6E9C6;
+  color: #468847;
+}
+
+.alert-success .alert-link {
+  color: #356635;
+}
+
+.alert-info {
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  color: #3A97AD;
+}
+
+.alert-info .alert-link {
+  color: #2D6987;
+}
+
+.alert-warning {
+  background-color: #FCF8E3;
+  border-color: #FBEED5;
+  color: #C09853;
+}
+
+.alert-warning .alert-link {
+  color: #A47E3C;
+}
+
+// Buttons
+.btn-link {
+  color: #568188;
+}
+
+.btn-primary {
+  background-color: #568188;
+  border-color: #4C7278;
+  color: #FFFFFF;
+}
+
+.btn-success {
+  background-color: #9BCF7D;
+  border-color: #8DC86A;
+  color: #FFFFFF;
+}
+
+.btn-info {
+  background-color: #5FA291;
+  border-color: #559283;
+  color: #FFFFFF;
+}
+
+.btn-warning {
+  background-color: #FF9D60;
+  border-color: #FF8D46;
+  color: #FFFFFF;
+}
+
+.btn-danger {
+  background-color: #FE8B6C;
+  border-color: #FE7753;
+  color: #FFFFFF;
+}
+
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:active {
+  color: #385559;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #46696F;
+  border-color: #344F53;
+}
+
+.btn-success:hover,
+.btn-succes:focus,
+.btn-succes:active {
+  background-color: #84C45F;
+  border-color: #6BB342;
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active {
+  background-color: #4F897A;
+  border-color: #3F6C60;
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active {
+  background-color: #FF8437;
+  border-color: #FF6809;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active {
+  background-color: #FE6D43;
+  border-color: #FD4716;
+}
+
+// Typography
+a,
+.page-link {
+  color: #568188;
+}
+
+a:hover,
+a:focus,
+a:active,
+.page-link:hover {
+  color: #385559;
+}
+
+.text-primary {
+  color: #568188!important;
+}
+
+.text-success {
+  color: #468847!important;
+}
+
+.text-info {
+  color: #3A87AD!important;
+}
+
+.text-warning {
+  color: #C09853!important;
+}
+
+.text-danger {
+  color: #B94A48!important;
+}
+
+// Pagination
+.page-item.active .page-link {
+  background-color: #568188;
+  border-color: #4C7278;
+}
+
+.page-item.active .page-link:hover {
+  background-color: #46696F;
+  border-color: #344F53;
+}
+
+// Navbar
+.bg-pastel {
+  background-color: #ECEAE4;
+}
+
+.navbar-toggler .fa {
+  color: #568188;
+}
+
+// Footer
+.navbar-light .navbar-text a {
+  color: rgba(0, 0, 0, 0.5);
 }

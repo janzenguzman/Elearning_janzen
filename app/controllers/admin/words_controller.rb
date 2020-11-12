@@ -16,7 +16,7 @@ class Admin::WordsController < ApplicationController
     @word.category_id = params[:category_id]
 
     if @word.save
-      flash[:success] = "You have made a new word!"
+      flash[:success] = "Success! You have made a new word."
       redirect_to new_admin_category_word_url(current_category)
     else
       render 'new'
@@ -28,7 +28,7 @@ class Admin::WordsController < ApplicationController
 
   def update
     if current_word.update_attributes(word_params)
-      flash[:success] = "Word UPDATED!"
+      flash[:success] = "Success! Word successfuly updated."
       redirect_to admin_category_url(current_category)
     else
       render 'edit'
@@ -38,7 +38,7 @@ class Admin::WordsController < ApplicationController
   def destroy
     @word = current_word.destroy
     @word.destroy
-    flash[:danger] = "Word deleted."
+    flash[:danger] = "Oh! You just deleted a Word."
     redirect_back(fallback_location: request.referer)
   end
 

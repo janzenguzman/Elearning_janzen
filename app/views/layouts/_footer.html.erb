@@ -1,0 +1,14 @@
+<footer class="text-center mt-auto">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <span class="navbar-text mx-auto">
+                &copy; 2020 
+                <%=
+                    link_to_if(logged_in?, "eLearning", { :controller => "users", :action => "dashboard" }) do
+                        link_to("eLearning", { :controller => "sessions", :action => "new" })
+                    end
+                %>
+            </span>
+        </div>
+    </nav>
+</footer>
