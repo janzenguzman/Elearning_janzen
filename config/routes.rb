@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   # Sessions
   resources :sessions, only: :create
   # Relationship
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy] do
+    resources :activities, module: :relationships
+  end
   # Admin
   namespace :admin do
     # Category
@@ -32,6 +34,7 @@ Rails.application.routes.draw do
     resources :lessons, only: [:new, :create, :show] do
       #Answers
       resources :answers, only: [:new, :create]
+      resources :activities, module: :lessons
     end
   end
 

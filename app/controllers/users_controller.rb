@@ -8,9 +8,6 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page], per_page: 10)
   end
 
-  def dashboard
-  end
-
   def new
     @user = User.new
   end
@@ -57,6 +54,11 @@ class UsersController < ApplicationController
     @users = @user.followers.all
     @all_users = @user.followers
     render 'show_follow'
+  end
+
+  def dashboard
+    # @activity = Activity.all
+    # abort
   end
 
   private
