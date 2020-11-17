@@ -20,6 +20,8 @@
 // Font Awesome
 @import "font-awesome";
 // Breakpoints
+// Custom extra small size screen
+$screen-xs-min: 360px;
 // Small tablets and large smartphones (landscape view)
 $screen-sm-min: 576px;
 // Small tablets (portrait view)
@@ -28,6 +30,13 @@ $screen-md-min: 768px;
 $screen-lg-min: 992px;
 // Large tablets and desktops
 $screen-xl-min: 1200px;
+
+// Extra-Small devices
+@mixin xs {
+  @media (min-width: #{$screen-xs-min}) {
+    @content;
+  }
+}
 
 // Small devices
 @mixin sm {
@@ -91,6 +100,32 @@ body {
     width: 75%;
     margin: auto;
   }
+}
+
+footer .w-100 {
+  @include sm {
+    width: auto!important;
+  }
+}
+
+.footer-menu {
+  list-style: none;
+  margin-bottom: 0;
+  padding-left: 0;
+  @include xs {
+    flex-direction: row!important;
+  }
+}
+
+.footer-menu .nav-link {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.footer-menu .nav-link:hover,
+.footer-menu .nav-link:active,
+.footer-menu .nav-link:focus {
+  color: rgba(0, 0, 0, 0.9);
+  text-decoration: underline;
 }
 
 // Alert Banners

@@ -1,11 +1,9 @@
 <div class="row my-5 mx-0">
-    <div class="col-6">
-        <div class="d-flex justify-content-between">
-            <h1 class="text-center pb-4">Edit Category</h1>
-            <%= link_to "Back", admin_categories_path, class: "btn btn-link" %>
-        </div>
+    <div class="col-6 mx-auto">
+        <h1 class="text-center pb-4">Edit Category</h1>
         <div class="form">
             <%= render "form", btn_msg: "Update category" %>
         </div>
+        <%= link_to "Back", admin_categories_path, class: "btn btn-link btn-block mt-3" %>
     </div>
 </div>

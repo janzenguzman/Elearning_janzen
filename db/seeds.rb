@@ -43,7 +43,7 @@ followers = users[3..12]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
-10.times do
+15.times do
   Category.create(
     title: Faker::Lorem.word,
     description: Faker::Lorem.paragraph_by_chars(75)
