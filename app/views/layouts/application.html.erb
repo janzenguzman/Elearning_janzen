@@ -10,16 +10,22 @@
     </head>
 
     <body>
-        <%= render 'layouts/header' %>
-        <div class="container my-4">
-            <% if flash.any? %>
-                <% flash.each do |type, msg| %>
-                    <div class="mt-4 alert alert-<%= type %>">
-                        <div><%= msg %></div>
-                    </div>
+        <div class="d-flex h-100 flex-column">
+            <%= render 'layouts/header' %>
+            <div class="container<% if logged_in? %><% if current_page?(about_us_path) || current_page?(contact_us_path) %> my-auto<% else %> mt-3 mb-auto<% end %><% else %> my-auto<% end %>">
+                <% if flash.any? %>
+                    <% flash.each do |type, msg| %>
+                        <div class="mt-4 alert alert-<%= type %> fade show alert-dismissible">
+                            <div><%= msg %></div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <% end %>
                 <% end %>
-            <% end %>
-            <%= yield %>
+                <%= yield %>
+            </div>
+            <%= render 'layouts/footer'%>
         </div>
     </body>
 </html>

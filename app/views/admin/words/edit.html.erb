@@ -1,8 +1,5 @@
-<div class="container">
-    <div class="d-flex justify-content-between align-items center mt-4">
-        <h1>Edit a word</h1>
-        <%= link_to "Back", admin_category_path(@category), class: "btn btn-link" %>
-    </div>
+<div class="col-6 mx-auto">
+    <h1 class="text-center my-4">Edit a word</h1>
     <div class="form">
         <%= form_for ([:admin, :category, @word]), url: admin_category_word_path do |f| %>
             <%= render "shared/alerts", object: f.object %>
@@ -22,4 +19,5 @@
             <%= f.submit "Update Word", class: "btn btn-block btn-primary mt-4" %>
         <% end %>
     </div>
+    <%= link_to "Back", admin_category_path(@category), class: "btn btn-link btn-block mt-3" %>
 </div>

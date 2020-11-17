@@ -1,16 +1,16 @@
 <tr>
-    <td><%= word.word %></td>
-    <td>
+    <td style="width: 30%;"><%= word.word %></td>
+    <td style="width: 50%;">
         <% word.choices.each do |choice| %>
             <% if choice.is_correct? %>
                 <%= choice.choice %>
             <% end %>
         <% end %>
     </td>
-    <td>
+    <td style="width: 20%;">
         <%= link_to "Edit", edit_admin_category_word_path(@category.id, word.id), class: "btn btn-info" %>
         <%= link_to "Delete", admin_category_word_path(@category.id, word.id), method: :delete,
                                     data: { confirm: "Are you sure?" },
-                                    class: "btn btn-danger" %>
+                                    class: "btn btn-danger mt-1 mt-lg-0" %>
     </td>
 </tr>

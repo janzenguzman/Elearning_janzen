@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
         redirect_to dashboard_url
       end
     else
-      flash[:danger] = "Invalid credentials"
+      flash[:danger] = "Invalid credentials! Please try again."
       redirect_to root_url
     end
   end
