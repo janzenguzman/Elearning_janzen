@@ -6,13 +6,14 @@ class AnswersController < ApplicationController
   
   def new
     @words = @category.words.paginate(page: params[:page], per_page: 1)
+    @lesson.create_activity(user: current_user)
     @answer = Answer.new
   end
 
   def create
     @choice = Choice.find(params[:choice_id])
     @answers = @lesson.answers.build(answer_params)
-    # abort
+    
     if @lesson.save
       unless params[:page].empty?
         redirect_to new_category_lesson_answer_url(@category, @lesson, page: params[:page])

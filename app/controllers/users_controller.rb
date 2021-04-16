@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @activities = @user.activities.paginate(page: params[:page], per_page: 10)
   end
 
   def edit
@@ -54,11 +55,6 @@ class UsersController < ApplicationController
     @users = @user.followers.all
     @all_users = @user.followers
     render 'show_follow'
-  end
-
-  def dashboard
-    # @activity = Activity.all
-    # abort
   end
 
   private

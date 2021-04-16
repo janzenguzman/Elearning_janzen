@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Elearning Janzen</title>
+        <title><%= yield(:title) %> | eLearning</title>
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
 
@@ -10,22 +10,24 @@
     </head>
 
     <body>
-        <div class="d-flex h-100 flex-column">
+        <div class="main-content">
             <%= render 'layouts/header' %>
-            <div class="container<% if logged_in? %><% if current_page?(about_us_path) || current_page?(contact_us_path) %> my-auto<% else %> mt-3 mb-auto<% end %><% else %> my-auto<% end %>">
+            <div class="container d-flex flex-fill flex-column">
                 <% if flash.any? %>
-                    <% flash.each do |type, msg| %>
-                        <div class="mt-4 alert alert-<%= type %> fade show alert-dismissible">
-                            <div><%= msg %></div>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    <% end %>
+                    <div class="flash-container">
+                        <% flash.each do |type, msg| %>
+                            <div class="my-1 alert alert-<%= type %> fade show alert-dismissible mt-4">
+                                <div><%= msg %></div>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <% end %>
+                    </div>
                 <% end %>
                 <%= yield %>
             </div>
-            <%= render 'layouts/footer'%>
         </div>
+        <%= render 'layouts/footer'%>
     </body>
 </html>

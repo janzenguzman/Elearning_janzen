@@ -1,25 +1,19 @@
 Rails.application.routes.draw do
   # Static Pages
+  root 'pages#dashboard'
   get '/about-us', to:'pages#about'
   get '/contact-us', to:'pages#contact'
 
   # Users
-  # root 'users#index'
   get '/signup', to: 'users#new'
-  get '/dashboard', to: 'users#dashboard'
-  get '/admin/dashboard', to: 'admin/users#dashboard'
-
   # Sessions
-  root 'sessions#new'
-  delete 'logout', to: 'sessions#destory'
-  get 'sessions/create'
+  get '/login', to: 'sessions#new', as: 'login'
+  delete '/logout', to: 'sessions#destory', as: 'logout'
 
   # Sessions
   resources :sessions, only: :create
   # Relationship
-  resources :relationships, only: [:create, :destroy] do
-    resources :activities, module: :relationships
-  end
+  resources :relationships, only: [:create, :destroy]
   # Admin
   namespace :admin do
     # Category
@@ -34,7 +28,6 @@ Rails.application.routes.draw do
     resources :lessons, only: [:new, :create, :show] do
       #Answers
       resources :answers, only: [:new, :create]
-      resources :activities, module: :lessons
     end
   end
 

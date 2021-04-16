@@ -80,7 +80,12 @@ $screen-xl-min: 1200px;
 // General
 body {
   color: #333333;
-  height: 100vh;
+}
+
+.main-content {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
 }
 
 .main-header {
@@ -291,7 +296,7 @@ a:active,
 
 // Navbar
 .bg-pastel {
-  background-color: #ECEAE4;
+  background-color: #EEE;
 }
 
 .navbar-toggler .fa {

@@ -8,19 +8,19 @@ class SessionsController < ApplicationController
       log_in user
       flash[:success] = "Successfully logged in."
       if current_user.is_admin?
-        redirect_to admin_dashboard_url
+        redirect_to root_url
       else
-        redirect_to dashboard_url
+        redirect_to root_url
       end
     else
       flash[:danger] = "Invalid credentials! Please try again."
-      redirect_to root_url
+      redirect_to login_url
     end
   end
 
   def destory
     log_out
     flash[:success] = "Successfuly logged out."
-    redirect_to root_url
+    redirect_to login_url
   end
 end

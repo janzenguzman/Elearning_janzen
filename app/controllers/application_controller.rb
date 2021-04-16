@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def logged_in_user
     unless logged_in?
       flash[:warning] = "Warning! Please login."
-      redirect_to root_url
+      redirect_to login_url
     end
   end
 
@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
     unless logged_in? && admin_user?
       flash[:info] = "Opps! You are not authorized to access the link."
       if logged_in?
-        redirect_to dashboard_url
-      else
         redirect_to root_url
+      else
+        redirect_to login_url
       end
     end
   end

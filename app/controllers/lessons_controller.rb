@@ -23,7 +23,7 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find(params[:id])
-    @answer = @lesson.answers
+    @answers = @lesson.answers
     @category = Category.find(params[:category_id])
     @words = @category.words
   end

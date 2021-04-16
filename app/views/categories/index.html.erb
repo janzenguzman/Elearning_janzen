@@ -1,3 +1,4 @@
+<% provide(:title, "Categories") %>
 <div class="mt-4 text-center"><h1>Categories</h1></div>
 <div class="row">
     <% if @categories.any? %>
@@ -5,7 +6,20 @@
             <div class="col-6 my-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"><%= category.title %></h5>
+                        <h5 class="card-title">
+                            <div class="row">
+                                <div class="col">
+                                    <h5 class="mb-0"><%= category.title %></h5>
+                                </div>
+                                <% if is_completed(category) %>
+                                    <div class="col-md-4">
+                                        <span class="badge badge-success">
+                                            Score: <%= show_result(category) %> out of <%= total_words((category)) %>
+                                        </span>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </h5>
                         <hr class="my-3">
                         <p class="card-text"><%= category.description %></p>
 

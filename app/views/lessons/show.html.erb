@@ -1,3 +1,4 @@
+<% provide(:title, "Results") %>
 <div class="col-10 mx-auto my-4">
     <div class="d-flex justify-content-between align-items-end mb-3">
         <div>
@@ -5,40 +6,44 @@
         </div>
         <p class="mb-1">
             <strong>
-                <%= show_result(@category) %> out of <%= total_words(@category) %>
+                <%= @lesson.result %> out of <%= @lesson.words.count %>
             </strong>
         </p>
     </div>
-    <table class="table">
-        <thead class="thead-light">
+    <table class="table table-bordered">
+        <thead>
             <tr>
                 <th>Word</th>
                 <th>Your Answer</th>
                 <th>Correct Answer</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <% @words.each do |word| %>
-                <tr>
-                    <th><%= word.word %></th>
+            <% @answers.each do |answer| %>
+                <tr class="<% if answer.choice.is_correct? %>table-success<% else %>table-danger<% end %>">
+                    <th><p class="mb-0"><%= answer.word.word %></p></th>
+                    <td><p class="mb-0"><%= answer.choice.choice %></p></td>
                     <td>
-                        <% word.choices.each do |choice| %>
-                            <% @answer.each do |answer| %>
-                                <% if choice.id == answer.choice_id %>
-                                    <%= choice.choice %>
+                        <% @words.each do |word| %>
+                            <% word.choices.each do |choice| %>
+                                <% if word.id == answer.word.id %>
+                                    <% if choice.is_correct? %>
+                                        <p class="mb-0"><%= choice.choice %></p>
+                                    <% end %>
                                 <% end %>
                             <% end %>
                         <% end %>
                     </td>
-                    <td>
-                        <% word.choices.each do |choice| %>
-                            <% if choice.is_correct %>
-                                <%= choice.choice %>
-                            <% end %>
+                    <td class="text-center">
+                        <% if answer.choice.is_correct? %>
+                            <i class="fa fa-check-circle text-success"></i>
+                        <% else %>
+                            <i class="fa fa-times-circle text-danger"></i>
                         <% end %>
                     </td>
                 </tr>
-            <%end %>
+            <% end %>
         </tbody>
     </table>
     <div class="d-flex justify-content-end">
