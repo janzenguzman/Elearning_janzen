@@ -20,10 +20,14 @@
                                 <h4><%= link_to user.name, user %></h4>
                                 <p><%= user.email %></p>
                             </div>
-                            <% if current_user.is_admin && !user.is_admin %>
-                                <%= link_to "Remove", user, method: :delete,
-                                                            data: { confirm: "Are you sure?" } %>
-                            <% end %>
+                            <div>
+                                <% if current_user.is_admin && !user.is_admin %>
+                                    <%= link_to "Remove", user, method: :delete,
+                                                                data: { confirm: "Are you sure?" },
+                                                                class: "btn btn-danger d-block mb-1" %>
+                                <% end %>
+                                <%= render partial: "follow_form", locals: { user: user } %>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -16,14 +16,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "Account sucessfully made! You can now login."
-      redirect_to root_url
+      redirect_to login_url
     else
+      flash[:danger] = "Double check, there seem to be an error."
       render 'new'
     end
   end
 
   def show
-    @activities = @user.activities.paginate(page: params[:page], per_page: 10)
+    @activities = @user.activities.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
   end
 
   def edit
@@ -31,8 +32,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:success] = "Profile have been edited!"
       redirect_back(fallback_location: request.referer)
     else
+      flash[:danger] = "Double check, there seem to be an error."
       render 'edit'
     end
   end
@@ -55,11 +58,6 @@ class UsersController < ApplicationController
     @users = @user.followers.all
     @all_users = @user.followers
     render 'show_follow'
-  end
-
-  def dashboard
-    # @activity = Activity.all
-    # abort
   end
 
   private

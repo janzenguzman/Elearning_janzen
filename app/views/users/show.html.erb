@@ -19,7 +19,9 @@
                         </a>
                     </div>
                 </div>
-                <%= render "follow_form" %>
+                <div class="mt-3">
+                    <%= render partial: 'follow_form', locals: { user: @user } %>
+                </div>
             </div>
         </div>
     </div>
@@ -27,6 +29,11 @@
         <div class="card">
             <div class="card-header">Activity Feed</div>
             <%= render "activities/activity" %>
+        </div>
+
+
+        <div class="mt-3">
+            <%= will_paginate @activities %>
         </div>
     </div>
 </div>

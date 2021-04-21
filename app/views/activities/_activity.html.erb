@@ -1,7 +1,7 @@
 <ul class="list-group list-group-flush">
     <% if @activities.any? %>
         <% @activities.each do |activity| %>
-            <li class="list-group-item py-4">
+            <li class="list-group-item py-4 border-0">
                 <% if activity.user.name == current_user.name %>
                     <%= link_to "You", activity.user %>
                 <% else %>
@@ -22,6 +22,8 @@
             </li>
         <% end %>
     <% else %>
-        <h5>No activity yet.</h5>
+        <li class="list-group-item py-4 border-0">
+            <h5>No activity yet.</h5>
+        </li>
     <% end %>
 </ul>

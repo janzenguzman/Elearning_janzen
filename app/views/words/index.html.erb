@@ -1,0 +1,80 @@
+<% provide(:title, "Words Learned") %>
+<div class="row py-4">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">User Information</div>
+            <div class="card-body text-center">
+                <div class="pb-4"><%= gravatar_for(current_user, "profile-large") %></div>
+                <h3><%= current_user.name %></h3>
+                <p><%= current_user.email %></p>
+
+                <div class="row mt-2 mx-0">
+                    <div class="col-6">
+                        <%= link_to "View Profile", current_user, class: "btn btn-warning" %>
+                    </div>
+                    <div class="col-6">
+                        <%= link_to "Edit Profile", edit_user_path(current_user), class: "btn btn-primary" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        Words Learned
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <%= link_to "Back to Dashboard", root_path %>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <% if @answers.any? %>
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Your Answer</th>
+                                <th>Correct Answer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @answers.each do |answer| %>
+                                <tr class="<% if answer.choice.is_correct? %>table-success<% else %>table-danger<% end %>">
+                                    <th><p class="mb-0"><%= answer.word.word %></p></th>
+                                    <td><p class="mb-0"><%= answer.choice.choice %></p></td>
+                                    <td>
+                                        <% @lessons.each do |lesson| %>
+                                            <% lesson.words.each do |word| %>
+                                                <% word.choices.each do |choice| %>
+                                                    <% if word.id == answer.word.id %>
+                                                        <% if choice.is_correct? %>
+                                                            <p class="mb-0"><%= choice.choice %></p>
+                                                        <% end %>
+                                                    <% end %>
+                                                <% end %>
+                                            <% end %>
+                                        <% end %>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                <% else %>
+                    <h5>
+                        You haven't taken any exam yet.
+                        <%= link_to "Take one now!", categories_path %>
+                    </h5>
+                <% end %>
+            </div>
+            <% if will_paginate(@answers) != nil %>
+                <div class="card-footer">
+                    <%= will_paginate @answers, always_display: true %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
