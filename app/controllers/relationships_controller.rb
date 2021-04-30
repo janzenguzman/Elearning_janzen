@@ -1,7 +1,8 @@
 class RelationshipsController < ApplicationController
   def create
     @user = User.find(params[:followed_id])
-    current_user.follow(@user)
+    @relationship = current_user.follow(@user)
+    @relationship.create_activity(user: current_user)
     redirect_back(fallback_location: request.referer)
   end
 

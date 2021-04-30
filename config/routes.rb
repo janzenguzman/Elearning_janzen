@@ -1,18 +1,14 @@
 Rails.application.routes.draw do
   # Static Pages
+  root 'pages#dashboard'
   get '/about-us', to:'pages#about'
   get '/contact-us', to:'pages#contact'
 
   # Users
-  # root 'users#index'
   get '/signup', to: 'users#new'
-  get '/dashboard', to: 'users#dashboard'
-  get '/admin/dashboard', to: 'admin/users#dashboard'
-
   # Sessions
-  root 'sessions#new'
-  delete 'logout', to: 'sessions#destory'
-  get 'sessions/create'
+  get '/login', to: 'sessions#new', as: 'login'
+  delete '/logout', to: 'sessions#destory', as: 'logout'
 
   # Sessions
   resources :sessions, only: :create
@@ -44,5 +40,7 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # Words
+  resources :words, only: [:index]
 end

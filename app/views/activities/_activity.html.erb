@@ -1,0 +1,29 @@
+<ul class="list-group list-group-flush">
+    <% if @activities.any? %>
+        <% @activities.each do |activity| %>
+            <li class="list-group-item py-4 border-0">
+                <% if activity.user.name == current_user.name %>
+                    <%= link_to "You", activity.user %>
+                <% else %>
+                    <%= link_to activity.user.name, activity.user %>
+                <% end %>
+
+                <% if activity.action_type == "Relationship" %>
+                    followed <%= link_to activity.action.followed.name, activity.action.followed, class: "btn btn-sm btn-primary" %>
+                <% else %>
+                    <% if activity.action.is_completed? %>
+                        learned <%= activity.action.result %> out of <%= activity.action.words.count %>
+                        in <%= link_to activity.action.category.title, category_lesson_path(activity.action.category.id, activity.action_id), class: "btn btn-sm btn-secondary" %>
+                    <% end %>
+                <% end %>
+                <small class="timestamp d-block">
+                    Posted <%= time_ago_in_words(activity.created_at) %> ago.
+                </small>
+            </li>
+        <% end %>
+    <% else %>
+        <li class="list-group-item py-4 border-0">
+            <h5>No activity yet.</h5>
+        </li>
+    <% end %>
+</ul>
